@@ -1,9 +1,9 @@
 <?php
    #   Author of the script
-   #   Name: Ezra Adamu
-   #   Email : ezra00100@gmail.com
-   #   Date created: 29/06/2022
-   #   Date modified: 29/06/2022
+   #   Name: Ayuba Adamu
+   #   Email : adamujob71@gmail.com
+   #   Date created: 01/09/2023
+   #   Date modified: 26/10/2023
 	
 	trait Encryption 
     {

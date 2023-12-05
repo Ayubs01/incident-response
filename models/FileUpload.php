@@ -1,9 +1,9 @@
 <?php
-	#   Author of the script
-	#   Name: Ezra Adamu
-	#   Email : ezra00100@gmail.com
-	#   Date created: 08/05/2022
-    #   Date modified: 08/07/2022
+   #   Author of the script
+   #   Name: Ayuba Adamu
+   #   Email : adamujob71@gmail.com
+   #   Date created: 01/09/2023
+   #   Date modified: 26/10/2023
 
 	trait FileUpload
 	{

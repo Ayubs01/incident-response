@@ -1,28 +1,24 @@
 <?php 
-   #   Author of the script
-   #   Name: Ayuba Adamu
-   #   Email : adamujob71@gmail.com
-   #   Date created: 01/09/2023
-   #   Date modified: 26/10/2023 
+	#   Author of the script
+	#   Name: Ezra Adamu
+	#   Email: ezra00100@gmail.com
+	#   Date created: 28/05/2023 
+	#   Date modified: 10/11/2023 
 
 	const ENVIRONMENT = 'Test';//Test Live
 
-   //DB Config
+	//DB Config
 	const HOST = 'localhost';
 	const USER = 'root';
 	const PWORD = '';
 	const DB = 'ir_db';
 
-	$msg = '';
-	$clear = false;
 	$website_title = 'Incident Response';
-	$test_email = 'adamujob71@gmail.com';
+	$apply_url = 'http://ir.test';
 
-	const APP_SESS = 'student_id';
+	const APP_SESS = 'app_id';
 	const APP_SESS_TIME = 3500;
 	
-	$js_modules = [ 'app' ];
-
 	//url
    $server_name = ENVIRONMENT == 'Test' ? 'http://' : 'https://';
    $server_name .= $_SERVER['SERVER_NAME'];
@@ -32,11 +28,15 @@
    //directory
    $root_dir = dirname( __DIR__ );
    $cur_dir = dirname( __FILE__ );
-   //echo getcwd();
+	//echo getcwd();
 
-   //$upload_dir = "$cur_dir/uploads";
-   //$upload_url = "$server_name/uploads";
-   //$server_name_2 = 'http://';
-   //$upload_dir = '../uploads';
-   //$upload_url = "$server_name_2/uploads";
+	$upload_dir = "$cur_dir/uploads";
+	//$upload_url = "$server_name/uploads";
+	$upload_url = "$apply_url/uploads";
+
+	$test_email = '';
+	$msg = '';
+	$clear = false;
+	$is_admin = false;
+	$curr_year = $_SESSION[ 'curr_year' ] ?? date( 'Y' );
 ?> 

@@ -6,13 +6,6 @@
             <div class="row justify-content-center">
                <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-                 <!--  <div class="d-flex justify-content-center py-4">
-                     <a href="#" class="logo d-flex align-items-center w-auto">
-                     <img src="assets/img/avatar.png" alt="Logo" >
-                        <span class="h2 d-none d-lg-block">Admin</span>
-                     </a>
-                  </div> --><!-- End Logo -->
-
                   <div class="card mb-3">
                      <div class="card-body">
 
@@ -37,7 +30,7 @@
                               <div class="invalid-feedback">Please enter your password!</div>
                            </div>
 
-                           <div class="col-12">
+                           <div class="col-12 mt-4">
                               <button class="btn btn-success w-100" type="submit" name="log_btn">Login</button>
                            </div>
                            <div class="col-md-12 ">

@@ -1,79 +1,83 @@
-<main id="main" class="main">
-	<section class="section">
-		<div class="row">
-			<div class="col-md-8 mx-auto">
-				<div class="card">
-					<div class='overlay-div invisible'>
-						<div>
-							<div class='spinner-border text-info' role='status'>
-								<span class='visually-hidden'>Loading...</span>
-							</div>
-						</div>
-					</div>
+<main id="main" class="main my-5">
 
-					<div class="card-body mt-3">
-						<?php
+   <section class="section">
+      
+      <div class="row">
+         <div class="col-md-6 mx-auto my-5">
+            <div class="card">
+               <div class="card-body">
+    
+                  <?php
+                     echo $web_app->showAlert( $msg );
+      
+                     if ( $incident_arr ) 
+                     {
+                  ?>
+                  <div class="mt-2">
+                     <?php
+                        echo "<table class='table table-responsive table-striped' id='my_datatable' style='width: 100%'>
+                        <thead>
+                           <tr>
+                              <th>S/N</th>
+                              <th>Student's Name</th>
+                              <th>Incident Type</th>
+                              <th>Description</th>
+                              <th>Incident Date</th>
+                          
+                           </tr>
+                        </thead>
+                        <tfoot>
+                           <tr>
+                              <th>S/N</th>
+                              <th>Student's Name</th>
+                              <th>Incident Type</th>
+                              <th>Description</th>
+                              <th>Incident Date</th>
+                           
+                           </tr>
+                        </tfoot>
+                        <tbody>";
 
-							echo $web_app->showAlert( $msg ); 
+                        $sn = 0;
+                        $tr_content = '';
 
-							if ( $user_data ) 
-							{
-						?>
-							<table class='table datatable table-responsive table-striped' id='my_datatable' style='width: 100%' >
-								<thead>
-									<tr>
-										<th>S/N</th>
-										<th>Incident Type</th>
-										<th>Location</th>
-										<th>Date</th>
-									
-									</tr>
-								</thead>
-								<tfoot>
-									<tr>
-										<th>S/N</th>
-										<th>Incident Type</th>
-										<th>Location</th>
-										<th>Date</th>
-									</tr>
-								</tfoot>
-								<tbody>
+                        //looping through records
+                        foreach ( $incident_arr as $incident_data ) 
+                        {
+                           $id = $incident_data[ 'id' ];
+                           $name = $incident_data[ 'description' ];
+                           $inc_type = $incident_data[ 'inc_type' ];
+                           $description = $incident_data[ 'description' ];
+                           $inc_date = $incident_data[ 'inc_date' ];
+                           $full_name = $incident_data[ 'full_name' ];
+                       
+                    
 
-									<?php
-										$sn = 0;
-										$tr_content = '';
+                           $sn++;
+                           
+                           $tr_content .=  "<tr>
+                              <td class='fw-light'> $sn </td>
+                              <td class='fw-light'> $full_name </td>
+                              <td class='fw-light'> $inc_type </td>                              
+                              <td class='fw-light'> $description </td>                              
+                              <td class='fw-light'> $inc_date </td>                              
+                           
+                               
+                           </tr>";
+                        }
 
-										//looping through records
-										foreach ( $user_data as $user_dt )
-										{
-
-											$id = $user_dt[ 'id' ];
-											$full_name = $user_dt[ 'full_name' ];
-											$matric_no = $user_dt[ 'matric_no' ];
-											$email = $user_dt[ 'matric_no' ];
-							
-
-											$sn++;
-
-											$tr_content .= "<tr>
-												<td class='fw-light'> $sn </td>
-												<td class='fw-light'> $full_name </td>
-												<td class='fw-light'> $matric_no </td>
-												<td class='fw-light'> $email </td>
-										
-											</tr>";
-										}
-
-										echo $tr_content .= '</tbody></table>';
-									}
-								?>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</section>
-		</main> 
-
-
-
+                        echo $tr_content .= '</tbody></table>';
+                  
+                     ?>
+                  </div>
+                  <?php
+                     }
+                  ?>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+   </section>  
+</main><!-- End #main -->
+ 

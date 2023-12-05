@@ -92,9 +92,23 @@
 			return $dt;
 		}
 
+	
+		function loadGenders( $sel_id = '')
+      {
+         $data_arr = [ 'Male', 'Female' ]; //, 'Other' 
+
+			return $this->createOptions( $data_arr, $sel_id );   
+      }
 		function loadStatus( $sel_status = '' )
 		{
 			$data_arr = [ null, 'Upcoming', 'Completed' ]; 
+
+			return $this->createOptions( $data_arr,  $sel_status );
+		}
+
+		function loadIncidentCategory( $sel_status = '' )
+		{
+			$data_arr = [ 'Accident', 'Rape', 'Fire' ]; 
 
 			return $this->createOptions( $data_arr,  $sel_status );
 		}

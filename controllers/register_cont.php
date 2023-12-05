@@ -3,97 +3,83 @@
 	#   Name: Ayuba Adamu
 	#   Email : adamujob71@gmail.com
 	#   Date created: 01/09/2023
-	#   Date modified: 26/10/2023 
+	#   Date modified: 10/11/2023 
 
 	//App functions
-include_once( 'models/Student.php' );
-		//Creating instances
-$student = new Student();
-
-$msg = '';
+	include_once( 'models/Student.php' );
+			//Creating instances
+	$student = new Student();
 
 	//login button logic
-if ( isset( $_POST['reg_btn'] ) ) 
-{
-	$full_name = $_POST['full_name'];
-	$email = $_POST['email'];
-	$matric_no = $_POST['matric_no'];
-	$phone_no = $_POST['phone_no'];
-	$pword = $_POST['pword'];
-	$con_pword = $_POST['con_pword'];
-		// print_r($_POST);
-		// exit();
-	$image = $_FILES[ 'img' ];
-			//Validating all Data
-	if ( $full_name && $matric_no && $email && $phone_no && $pword && $con_pword ) 
+	if ( isset( $_POST['reg_btn'] ) ) 
 	{
+		$full_name = $_POST['full_name'];
+		$email = $_POST['email'];
+		$matric_no = $_POST['matric_no'];
+		$phone_no = $_POST['phone_no'];
+		$pword = $_POST['pword'];
+		$con_pword = $_POST['con_pword'];
 
-		$dt_01 = [$email];
-		$user_data = $student->getByEmail( $dt_01 );
-		if (!$user_data) 
+		//Validating all Data
+		if ( $full_name && $matric_no && $email && $phone_no && $pword && $con_pword ) 
 		{
-			//Match password
-			if ( $pword == $con_pword ) 
+			$dt_01 = [$email];
+			$user_data = $student->getByEmail( $dt_01 );
+				
+			if (!$user_data) 
 			{
-				$check_pword_length =  strlen( $pword);
-				if ( $check_pword_length > 8 ) 
+				//Match password
+				if ( $pword == $con_pword ) 
 				{
-					//Hash password
-					$hs_pword = $student->encPword( $pword );
-					//upload image
-					$img_dir = "$upload_dir/students/img";
-					$img_upload = $student->imageUpload( $img_dir, $image );
-
-					if ( $img_upload[ 0 ] ) 
+					$check_pword_length =  strlen( $pword);
+					if ( $check_pword_length >= 8 ) 
 					{
-						$img_file =  $img_upload[ 1 ];
-						//Collect data to array respectively to db fields
-						$dt_02 = [ $email, $matric_no, $hs_pword, $full_name, $phone_no, $img_file ];
-						$add_student = $student->addNew( $dt_02 );
+						//Hash password
+						$hs_pword = $student->encPword( $pword );
+						
+							//Collect data to array respectively to db fields
+							$dt_02 = [ $email, $matric_no, $hs_pword, $full_name, $phone_no ];
+							$add_student = $student->addNew( $dt_02 );
 
-						if ( $add_student ) 
-						{
-							$msg = $web_app->showAlertMsg( 'success', 'Student Added Successful!' );
-						}
-						else
-						{
-							$msg = $web_app->showAlertMsg( 'danger', 'Sorry, Failed to Add Student!' );
-						}
+							if ( $add_student ) 
+							{
+								$msg = $web_app->showAlertMsg( 'success', 'Student Added Successful!' );
+								$clear = true;
+							}
+							else
+							{
+								$msg = $web_app->showAlertMsg( 'danger', 'Sorry, Failed to Add Student!' );
+							}
 
+					
 					}
 					else
 					{
-						$msg = $web_app->showAlertMsg( 'danger', $img_upload[ 1 ] );
+						$msg = $web_app->showAlertMsg( 'danger', 'Sorry, Your password must contain at least 8 characters' );
+
 					}
+
 				}
 				else
 				{
-					$msg = $web_app->showAlertMsg( 'danger', 'Sorry, Your password must be at least 8 characters long, contain at least one number and have a mixture of uppercase and lowercase letters' );
-
+					$msg = $web_app->showAlertMsg( 'danger', 'Sorry, Password Does Not Match!' );
 				}
 
-			}
-			else
+			} 
+			else 
 			{
-				$msg = $web_app->showAlertMsg( 'danger', 'Sorry, Password Does Not Match!' );
+				$msg = $web_app->showAlertMsg( 'danger', 'Email Already Exist!' );
 			}
 
 		} 
 		else 
 		{
-			$msg = $web_app->showAlertMsg( 'danger', 'Email Already Exist!' );
+			$msg = $web_app->showAlertMsg( 'danger', 'Please, Enter Required Data!' );
 		}
 
-	} 
-	else 
-	{
-		$msg = $web_app->showAlertMsg( 'danger', 'Please, Enter Required Data!' );
 	}
 
-}
-
-		//Register interface
-include_once( 'views/register.php' );
-
+	//Register interface
+	include_once( 'views/register.php' );
 
 ?>

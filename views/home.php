@@ -1,9 +1,8 @@
     <!-- ======= About Us Section ======= -->
-    <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title" >
-        <div class="card rounded-4 my-4 shadow mb-5 py-5 mx-auto col-md-3 d-flex flex-column align-items-center justify-content-center">
+    <section id="about" class="about mt-5">
+      <div class="container mt-5" data-aos="fade-up">
+        <div class="section-title">
+        <div class="card shadow my-5 mx-auto col-md-3 d-flex flex-column align-items-center justify-content-center">
           <div class="card-body">
           <div class="py-2 mb-4">
               <p class="card-title pb-0 fs-2" style="color:#741a62">Welcome to Campus Incident Reporting App</p>
@@ -18,9 +17,8 @@
 						</div>
 						<div class="col-md-12 text-center my-4">
 							<p class="card-title pb-0 fs-5" style="color:#741a62">Report any incident in & around the school premises</p>
-
 						</div>
-						<div class="col-md-12">
+						<div class="col-md-12 mb-3">
 							<a href="login" class="btn btn-danger rounded-pill fw-bold px-5">Emergency Button</a>
 						</div>
 					</div>

@@ -3,21 +3,26 @@
    #   Name: Ayuba Adamu
    #   Email : adamujob71@gmail.com
    #   Date created: 01/09/2023
-   #   Date modified: 26/10/2023 
+	#   Date modified: 10/11/2023 
+
 	include_once( 'App.php' );
 	include_once( 'Encryption.php' );
 	include_once( 'FileUpload.php' );
 
 	class Student
 	{
-			// Using Namespaces
-		use App, Encryption, FileUpload;
+
+		//using Namespaces
+		use Encryption, App {
+			App::__construct as private __appConst;
+		}
 
 		protected $table = '';
 		const DB_TABLE = 'students';
-
+ 
 		function __construct()
 		{
+			$this->__appConst();
 			$this->table = self::DB_TABLE;
 		}
 
@@ -45,14 +50,14 @@
 		{
 
 			$sql = "SELECT * FROM $this->table WHERE id = ?";
-			$res = $this->runQuery_1( $sql, $dt );
+			$res = $this->fetchData( $sql, $dt );
 
-			return $res ?? false;
+			return $res ?? [];
 
 		}
 		function addNew( array $dt ) 
 		{	
-			$sql = "INSERT INTO $this->table ( email, matric_no, pword, full_name, phone_no, image ) VALUES ( ?, ?, ?, ?, ?, ? )";
+			$sql = "INSERT INTO $this->table ( email, matric_no, pword, full_name, phone_no ) VALUES ( ?, ?, ?, ?, ? )";
 			$res = $this->runQuery( $sql, $dt );
 			
 			return $res ?? false;	  
@@ -73,6 +78,24 @@
 
 			return $res ?? [];
 		}
+
+		function updateById( array $dt )
+	   {
+		   $sql = "UPDATE $this->table SET `full_name`= ?, `matric_no`= ?, `phone_no`= ? WHERE id = ?";
+		   $res = $this->runQuery_2( $sql, $dt );
+
+		   return $res ?? false;
+	   }
+
+	   function updatePasswordById( array $dt )
+	   {
+		   $sql = "UPDATE $this->table SET  `pword`= ? WHERE id = ?";
+		   $res = $this->runQuery_2( $sql, $dt );
+
+		   return $res ?? false;
+	   }
+
+
 
 
 	}

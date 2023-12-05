@@ -3,9 +3,7 @@
    #   Name: Ayuba Adamu
    #   Email : adamujob71@gmail.com
    #   Date created: 01/09/2023
-   #   Date modified: 26/10/2023 
-
-	$msg = '';
+	#   Date modified: 10/11/2023 
 
 	include_once( 'models/Student.php' );
 	// Creating student instances
@@ -22,10 +20,9 @@
 		{
 			$dt_01 = [ $email ];
 			$app_dt = $student->getLogin( $dt_01 );
-			$pword_x = $app_dt[ 'pword' ];
-	
+			$pwordx = $app_dt[ 'pword' ] ?? '';
 			// Match applicant password
-			$match_pword = $student->decPword( $pword, $pword_x );
+			$match_pword = $student->decPword( $pword, $pwordx );
 
 			if ( $match_pword ) 
 			{  
@@ -37,7 +34,7 @@
 				// Collect user id
 				setcookie( 'app_id', $id ,  $time_out );
 
-				// Redirect to dashboard
+				// Redirect to incident details
 				header( "Location: ./incident_details", true, 301 );
 				exit();
 			} 
