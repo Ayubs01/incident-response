@@ -31,11 +31,19 @@
                            <input type="file" name="file" class="form-control" id="file" required>
                         </div>
 
+						<div class="form-group mt-3 col-md-12">
+                           <label class="fw-bold" for="location">location <span class="text-danger">*</span></label>
+                           <input type="text" name="location" class="form-control" id="location" required>
+                        </div>
+
 								<div class="form-group col-md-12 mt-3">
 									<label class="fw-bold" for="description">Description <span class="text-danger">*</span></label>
-									<textarea type="text" name="description" class="form-control" rows="5" id="description" placeholder="Enter Description" maxlenght="1000" required><?= $web_app->persistData( 'description', false, $clear )  ?></textarea>
+									<textarea type="text" name="description" class="form-control" rows="3" id="description" placeholder="Enter Description" maxlenght="1000" required><?= $web_app->persistData( 'description', false, $clear )  ?></textarea>
 								</div>
+	 					<div id="map">	
 
+
+						</div>
 								<div class="text-center mt-3 mb-2">
 									<button type="submit" name="report_btn" class="appointment-btn btn fw-bold">Report</button>
 								</div>
